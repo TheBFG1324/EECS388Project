@@ -103,15 +103,39 @@ void stopMotor(){freedom-e
 }
 
 void driveForward(uint8_t speedFlag){
-    /*
-        Write Task 4 code here
-    */
+    uint8_t variable1;
+    uint8_t variable2;
+    if (speedFlag == 1) {
+        breakup(313, &variable1, &variable2);
+        int drive_low = metal_i2c_write(i2c, PCA9685_LED0_OFF_L, 1, variable1, METAL_I2C_STOP_DISABLE);
+        int drive_high = metal_i2c_write(i2c, PCA9685_LED0_OFF_H, 1, variable2, METAL_I2C_STOP_ENABLE);
+    } else if (speedFlag == 2) {
+        breakup(315, &variable1, &variable2);
+        int drive_low = metal_i2c_write(i2c, PCA9685_LED0_OFF_L, 1, variable1, METAL_I2C_STOP_DISABLE);
+        int drive_high = metal_i2c_write(i2c, PCA9685_LED0_OFF_H, 1, variable2, METAL_I2C_STOP_ENABLE);
+    } else if (speedFlag == 3) {
+        breakup(317, &variable1, &variable2);
+        int drive_low = metal_i2c_write(i2c, PCA9685_LED0_OFF_L, 1, variable1, METAL_I2C_STOP_DISABLE);
+        int drive_high = metal_i2c_write(i2c, PCA9685_LED0_OFF_H, 1, variable2, METAL_I2C_STOP_ENABLE);
+    }
 }
 
 void driveReverse(uint8_t speedFlag){
-    /*
-        Write task 5 code here
-    */
+    uint8_t variable1;
+    uint8_t variable2;
+    if (speedFlag == 1) {
+        breakup(267, &variable1, &variable2);
+        int drive_low = metal_i2c_write(i2c, PCA9685_LED0_OFF_L, 1, variable1, METAL_I2C_STOP_DISABLE);
+        int drive_high = metal_i2c_write(i2c, PCA9685_LED0_OFF_H, 1, variable2, METAL_I2C_STOP_ENABLE);
+    } else if (speedFlag == 2) {
+        breakup(265, &variable1, &variable2);
+        int drive_low = metal_i2c_write(i2c, PCA9685_LED0_OFF_L, 1, variable1, METAL_I2C_STOP_DISABLE);
+        int drive_high = metal_i2c_write(i2c, PCA9685_LED0_OFF_H, 1, variable2, METAL_I2C_STOP_ENABLE);
+    } else if (speedFlag == 3) {
+        breakup(263, &variable1, &variable2);
+        int drive_low = metal_i2c_write(i2c, PCA9685_LED0_OFF_L, 1, variable1, METAL_I2C_STOP_DISABLE);
+        int drive_high = metal_i2c_write(i2c, PCA9685_LED0_OFF_H, 1, variable2, METAL_I2C_STOP_ENABLE);
+    }
 }
 
 int main()
@@ -153,7 +177,6 @@ int main()
 
         ex: steering(0); -> driving angle forward
     */
-    steering(0); // TODO
     
     //Motor config/stop. This will cause a second beep upon completion
     /*
