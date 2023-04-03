@@ -100,6 +100,13 @@ void stopMotor(){freedom-e
     /*
         Write Task 3 code here
     */
+    uint8_t* var1, var2;
+    i2c = metal_i2c_get_device(0);
+    breakup(280, &var1, &var2);
+    bufWrite[0] = var1;
+    bufWrite[1] = var2;
+    int stop1 = metal_i2c_write(i2c,PCA9685_I2C_LED_OFF_L,2,bufWrite[0],METAL_I2C_STOP_DISABLE)
+    int stop2 = metal_i2c_write(i2c,PCA9685_I2C_LED_OFF_L,2,bufWrite[1],METAL_I2C_STOP_DISABLE)
 }
 
 void driveForward(uint8_t speedFlag){
