@@ -70,9 +70,30 @@ void breakup(int bigNum, uint8_t* low, uint8_t* high){
 }
 
 void steering(int angle){
-    /*
-        Write Task 2 code here
-    */
+    //  Task 2: using getServoCycle(), bufWrite, bufRead, 
+    // breakup(), and and metal_i2c_transfer(), implement 
+    // the function defined above to control the servo
+    // by sending it an angle ranging from -45 to 45.
+
+    int cycle = getServoCycle(angle);
+
+    uint8_t varLow;
+    uint8_t varHigh;
+    breakup(cycle, &varLow, &varHigh);
+
+    // i2c is a global
+    bufWrite[0] = varLow;
+    bufWrite[1] = varHigh;
+    int success = metal_i2c_transfer(i2c, PCA9685_LED1_OFF_L, bufWrite, 2, bufRead, 1);
+
+    if (success == 0)
+    {
+        printf("Successfully steered");
+    }
+    else
+    {
+        printf("Steering failed");
+    }
 }
 
 void stopMotor(){freedom-e
@@ -129,15 +150,10 @@ int main()
         ex: 
         int valToBreak = getServoCycle(45);
         >>>sets valToBreak to 355
-        
-        note: the motor's speed controller is either 
-        LED0 or LED1 depending on where its plugged into 
-        the board. If its LED1, simply add 4 to the LED0
-        address
 
         ex: steering(0); -> driving angle forward
     */
-    
+    steering(0); // TODO
     
     //Motor config/stop. This will cause a second beep upon completion
     /*

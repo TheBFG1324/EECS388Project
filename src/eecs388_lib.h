@@ -55,6 +55,7 @@
 #define PCA9685_I2C_ADDRESS 0x40
 #define PCA9685_MODE1 0x00      /**< Mode Register 1 */
 #define PCA9685_LED0_ON_L 0x06  /**< LED0 on tick, low byte*/
+#define PCA9685_LED1_OFF_L 0x12  /**< LED1 on tick, low byte*/
 #define PCA9685_PRESCALE 0xFE     /**< Prescaler for PWM output frequency */
 
 // MODE1 bits
@@ -83,14 +84,7 @@
 void set_up_I2C();
 
 
-/******************************************************************************
- *   eecs388 library api (similar to Arduino)
- *******************************************************************************/
-void gpio_mode(int gpio, int mode);
-void gpio_write(int gpio, int state);
-void delay(int msec);
-void delay_usec(int usec);
-void ser_init();
+/*****************************************PCA9685_I2C_ADDRESS
 void ser_setup(int devid);
 int  ser_isready(int devid);
 void ser_write(int devid, char c);
